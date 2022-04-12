@@ -21,10 +21,16 @@ class Message:
         self.read = False
 
     def __str__(self):
+        """
+        :return: Str with title, body and sender.
+        """
         return f' Title: {self.title}' \
                f' Message: {self.body}' \
                f' From: {self.sender}'
 
     def __repr__(self):
+        """
+        :return: Str with title, body and sender.
+        """
         return self.__str__()
 
