@@ -81,7 +81,7 @@ class PostOffice:
                 count += 1
                 yield message
 
-    def search_inbox(self, user_name: str, substring: str):
+    def search_inbox(self, user_name: str, substring: str) -> list:
         """
         :param user_name: User inbox wanted.
         :param substring: Substring message wanted.
@@ -94,11 +94,11 @@ class PostOffice:
 
 if __name__ == '__main__':
     po_box = PostOffice(['a', 'b'])
-    message_id = po_box.send_message('a', 'b', 'Check', 'Hello!')
-    message_id2 = po_box.send_message('a', 'b', 'Check', 'world')
-    message_id3 = po_box.send_message('a', 'b', 'Check', 'from')
-    message_id4 = po_box.send_message('a', 'b', 'Check', 'Yinon')
-    message_id5 = po_box.send_message('a', 'b', 'Check', 'Tzomi!')
+    po_box.send_message('a', 'b', 'Check', 'Hello!')
+    po_box.send_message('a', 'b', 'Check', 'world')
+    po_box.send_message('a', 'b', 'Check', 'from')
+    po_box.send_message('a', 'b', 'Check', 'Yinon')
+    po_box.send_message('a', 'b', 'Check', 'Tzomi!')
 
     messages1 = po_box.read_inbox('b')
     for msg in messages1:
@@ -108,8 +108,8 @@ if __name__ == '__main__':
     for msg in messages2:
         print(msg)
 
-    find_messages = po_box.search_inbox('b', 'Tz')
-    print(find_messages)
+    find_messages1 = po_box.search_inbox('b', 'Tz')
+    print(find_messages1)
 
-    find_messages = po_box.search_inbox('b', 'Ch')
-    print(find_messages)
+    find_messages2 = po_box.search_inbox('b', 'Ch')
+    print(find_messages2)
