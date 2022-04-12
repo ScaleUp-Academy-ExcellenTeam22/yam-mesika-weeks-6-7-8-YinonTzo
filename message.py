@@ -7,7 +7,7 @@ class Message:
         message_id: Message Id.
         message_title: Message title.
         message_body: Message body.
-        sender: How sent the message.
+        sender: Who sent the message.
 
     Attributes:
         Like args and read member which tell us if this message is already read.
