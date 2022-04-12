@@ -69,7 +69,6 @@ class PostOffice:
         """
         if not num_of_msg:
             num_of_msg = len(self.boxes[user_name])
-            print(num_of_msg)
 
         count = 0
         for message in self.boxes[user_name]:
