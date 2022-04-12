@@ -1,4 +1,5 @@
 from typing import Generator
+import message
 
 
 class PostOffice:
@@ -47,13 +48,8 @@ class PostOffice:
         """
         user_box = self.boxes[recipient]
         self.message_id = self.message_id + 1
-        message_details = {
-            'id': self.message_id,
-            'title': message_title,
-            'body': message_body,
-            'sender': sender,
-            'read': False
-        }
+        message_details = message.Message(self.message_id, message_title, message_body, sender)
+
         if urgent:
             user_box.insert(0, message_details)
         else:
@@ -69,17 +65,16 @@ class PostOffice:
         """
         if not num_of_msg:
             num_of_msg = len(self.boxes[user_name])
-            print(num_of_msg)
 
         count = 0
-        for message in self.boxes[user_name]:
+        for msg in self.boxes[user_name]:
             if count >= num_of_msg:
                 break
 
-            if not message['read']:
-                message['read'] = True
+            if not msg.read:
+                msg.read = True
                 count += 1
-                yield message
+                yield msg
 
     def search_inbox(self, user_name: str, substring: str) -> list:
         """
@@ -87,9 +82,9 @@ class PostOffice:
         :param substring: Substring message wanted.
         :return: List that contains messages containing substring.
         """
-        return [message
-                for message in self.boxes[user_name]
-                if substring in message['title'] or substring in message['body']]
+        return [msg
+                for msg in self.boxes[user_name]
+                if substring in msg.title or substring in msg.body]
 
 
 if __name__ == '__main__':
@@ -101,12 +96,12 @@ if __name__ == '__main__':
     po_box.send_message('a', 'b', 'Check', 'Tzomi!')
 
     messages1 = po_box.read_inbox('b')
-    for msg in messages1:
-        print(msg)
+    for msg1 in messages1:
+        print(msg1)
 
     messages2 = po_box.read_inbox('b', 3)
-    for msg in messages2:
-        print(msg)
+    for msg1 in messages2:
+        print(msg1)
 
     find_messages1 = po_box.search_inbox('b', 'Tz')
     print(find_messages1)
