@@ -80,6 +80,8 @@ class PostOffice:
                 count += 1
                 yield message
 
+        # msges = list(filter(lambda msg: msg['read'], self.boxes[user_name]))[:num_of_msg]
+
     def search_inbox(self, user_name: str, substring: str) -> list:
         """
         :param user_name: User inbox wanted.
