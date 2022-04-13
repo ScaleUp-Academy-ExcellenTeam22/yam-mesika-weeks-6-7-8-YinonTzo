@@ -80,8 +80,6 @@ class PostOffice:
                 count += 1
                 yield message
 
-        # msges = list(filter(lambda msg: msg['read'], self.boxes[user_name]))[:num_of_msg]
-
     def search_inbox(self, user_name: str, substring: str) -> list:
         """
         :param user_name: User inbox wanted.
@@ -101,10 +99,12 @@ if __name__ == '__main__':
     po_box.send_message('a', 'b', 'Check', 'Yinon')
     po_box.send_message('a', 'b', 'Check', 'Tzomi!')
 
+    messages2 = po_box.read_inbox('b', 3)
+
     messages1 = po_box.read_inbox('b')
     for msg in messages1:
         print(msg)
-
+    
     messages2 = po_box.read_inbox('b', 3)
     for msg in messages2:
         print(msg)
@@ -114,3 +114,4 @@ if __name__ == '__main__':
 
     find_messages2 = po_box.search_inbox('b', 'Ch')
     print(find_messages2)
+
