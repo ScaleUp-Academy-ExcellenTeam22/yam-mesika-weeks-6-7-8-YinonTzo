@@ -4,7 +4,7 @@ class Message:
     Manage print functions.
 
     Args:
-        message_id: Message Id.
+        message_id: Message id.
         message_title: Message title.
         message_body: Message body.
         sender: Who sent the message.
@@ -24,13 +24,12 @@ class Message:
         """
         :return: Str with title, body and sender.
         """
-        return f' Title: {self.title}' \
-               f' Message: {self.body}' \
-               f' From: {self.sender}'
+        return f" Title: {self.title}" \
+               f" Message: {self.body}" \
+               f" From: {self.sender}"
 
     def __repr__(self):
         """
         :return: Str with title, body and sender.
         """
         return self.__str__()
-

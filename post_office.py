@@ -78,13 +78,14 @@ class PostOffice:
 
     def search_inbox(self, user_name: str, substring: str) -> list:
         """
+        Search message by substring in user inbox.
         :param user_name: User inbox wanted.
         :param substring: Substring message wanted.
         :return: List that contains messages containing substring.
         """
-        return [msg
-                for msg in self.boxes[user_name]
-                if substring in msg.title or substring in msg.body]
+        return [message_in_user_box
+                for message_in_user_box in self.boxes[user_name]
+                if substring in message_in_user_box.title or substring in message_in_user_box.body]
 
 
 if __name__ == '__main__':
