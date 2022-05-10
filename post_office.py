@@ -60,58 +60,59 @@ class PostOffice:
             user_box.append(message_details)
         return self.message_id
 
-    def read_inbox(self, user_name: str, num_of_msg: int = None) -> Generator:
+    def read_inbox(self, user_name: str, number_of_messages: int = None) -> Generator:
         """
         Read messages from user inbox.
         :param user_name: The user inbox wanted.
-        :param num_of_msg: Num of messages wanted.
+        :param number_of_messages: Num of messages wanted.
         :return: Generator that contains num of unread messages
         """
-        if not num_of_msg:
-            num_of_msg = len(self.boxes[user_name])
+        if not number_of_messages:
+            number_of_messages = len(self.boxes[user_name])
 
         count = 0
         for message in self.boxes[user_name]:
-            if count >= num_of_msg:
+            if count >= number_of_messages:
                 break
 
-            if not message['read']:
-                message['read'] = True
+            if not message["read"]:
+                message["read"] = True
                 count += 1
                 yield message
 
     def search_inbox(self, user_name: str, substring: str) -> list:
         """
+        Search message by substring in user inbox.
         :param user_name: User inbox wanted.
         :param substring: Substring message wanted.
         :return: List that contains messages containing substring.
         """
         return [message
                 for message in self.boxes[user_name]
-                if substring in message['title'] or substring in message['body']]
+                if substring in message["title"] or substring in message["body"]]
 
 
 if __name__ == '__main__':
-    po_box = PostOffice(['a', 'b'])
-    po_box.send_message('a', 'b', 'Check', 'Hello!')
-    po_box.send_message('a', 'b', 'Check', 'world')
-    po_box.send_message('a', 'b', 'Check', 'from')
-    po_box.send_message('a', 'b', 'Check', 'Yinon')
-    po_box.send_message('a', 'b', 'Check', 'Tzomi!')
+    po_box = PostOffice(["a", "b"])
+    po_box.send_message("a", "b", "Check", "Hello!")
+    po_box.send_message("a", "b", "Check", "world")
+    po_box.send_message("a", "b", "Check", "from")
+    po_box.send_message("a", "b", "Check", "Yinon")
+    po_box.send_message("a", "b", "Check", "Tzomi!")
 
-    messages2 = po_box.read_inbox('b', 3)
+    messages2 = po_box.read_inbox("b", 3)
 
-    messages1 = po_box.read_inbox('b')
+    messages1 = po_box.read_inbox("b")
     for msg in messages1:
         print(msg)
     
-    messages2 = po_box.read_inbox('b', 3)
+    messages2 = po_box.read_inbox("b", 3)
     for msg in messages2:
         print(msg)
 
-    find_messages1 = po_box.search_inbox('b', 'Tz')
+    find_messages1 = po_box.search_inbox("b", "Tz")
     print(find_messages1)
 
-    find_messages2 = po_box.search_inbox('b', 'Ch')
+    find_messages2 = po_box.search_inbox("b", "Ch")
     print(find_messages2)
 
