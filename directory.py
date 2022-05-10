@@ -1,4 +1,5 @@
-import directory
+import union as union
+
 import files
 
 
@@ -9,7 +10,7 @@ class Directory:
     def __init__(self):
         self.content = []
 
-    def add_to_directory(self, file: files.File or directory.Directory) -> None:
+    def add_to_directory(self, file: files.File) -> None:
         """
         :param file: Something to insert to the directory.
         """
