@@ -60,7 +60,7 @@ class PostOffice:
             user_box.append(message_details)
         return self.message_id
 
-    def read_inbox(self, user_name: str, number_of_messages: int = None) -> Generator:
+    def read_inbox(self, user_name: str, number_of_messages: int = None) -> Generator[dict, None, None]:
         """
         Read messages from user inbox.
         :param user_name: The user inbox wanted.
@@ -115,4 +115,3 @@ if __name__ == '__main__':
 
     find_messages2 = po_box.search_inbox("b", "Ch")
     print(find_messages2)
-
